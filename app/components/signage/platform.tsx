@@ -1,5 +1,8 @@
 import { Board } from "@where/app/interfaces/board";
 const Platform = ({ board, swap = false }: { board: Board; swap: boolean }) => {
+
+  console.log(board);
+
   return (
     <span>
       {swap
