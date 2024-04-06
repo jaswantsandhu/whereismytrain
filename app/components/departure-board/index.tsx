@@ -41,7 +41,7 @@ const DepartureBoard = ({ crs }: IDepartureBoardProps) => {
       <div className="flex justify-between gap-2 flex-col lg:flex-row">
         {boards &&
           boards.map((board) => {
-            return <Signage board={board} key={board.rsid} />;
+            return <Signage board={board} key={board.serviceID} />;
           })}
       </div>
     </div>

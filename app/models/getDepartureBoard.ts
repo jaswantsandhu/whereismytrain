@@ -22,6 +22,9 @@ const getDepartureBoard = async (
 ): Promise<IDepartureBoardResponse> => {
   const api = new openLDBWS(apiKey);
   options.crs = crs;
+  options.numRows = process.env.NEXT_PUBLIC_TOTAL_BOARDS;
+
+  console.log(operation.GET_DEPARTURE_BOARD_WITH_DETAILS)
 
   try {
     const board: {

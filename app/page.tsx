@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DepartureBoard from "./components/departure-board";
 import Link from "next/link";
 import TermsAndPrivacyButtons from "./components/terms-conditions";
@@ -7,7 +7,9 @@ import Footer from "./components/footer";
 
 export default function Home() {
   const [termsAccepted, setTermsAccepted] = useState<null | boolean>(null);
-  const [selectedCRS, setSelectedCRS] = useState<string>("");
+  const [selectedCRS, setSelectedCRS] = useState<string>(
+    global?.sessionStorage?.getItem("selected_crs") || ""
+  );
 
   return (
     <main className="flex min-h-screen flex-col p-10">
@@ -16,10 +18,15 @@ export default function Home() {
           <select
             className="custom-select bg-black text-white border-2 border-yellow-500 p-2 rounded-none"
             value={selectedCRS}
-            onChange={(e) => setSelectedCRS(e.target.value)}
+            onChange={(e) => {
+              window.sessionStorage.setItem("selected_crs", e.target.value);
+              setSelectedCRS(e.target.value);
+            }}
             aria-label="Please select station"
           >
-            <option disabled value={""}>Please select station</option>
+            <option disabled value={""}>
+              Please select station
+            </option>
             <optgroup label="London">
               <option value={"LST"}>London Liverpool Street</option>
               <option value={"KGX"}>London Kings Cross</option>
